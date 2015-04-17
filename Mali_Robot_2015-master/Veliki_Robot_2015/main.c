@@ -20,7 +20,7 @@ int main(void)
 	systemInit();
 	while(1)
 		{
-			yellowSide();
+			//yellowSide();
 			/* BEZ BIKONA */
 			/*moveOnDirection(-200,90,NULL);
 			_delay_ms(1000);
@@ -33,6 +33,16 @@ int main(void)
 			_delay_ms(500);
 			servo_position(250);
 			_delay_ms(500);*/
-			
+			moveOnDirection(-225, 90, NULL);
+			_delay_ms(500);
+			rotate(78,60,NULL);
+			_delay_ms(1000);
+			moveOnDirection(-700, 50, NULL);
+			_delay_ms(100);
+			rotate(-90,40,NULL);
+			moveOnDirection(-10, 50, NULL);
+			_delay_ms(5000);
+			while(1);
 		}
+		
 }

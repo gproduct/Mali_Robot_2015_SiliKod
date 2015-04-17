@@ -11,18 +11,19 @@ char stepDetection(void)
 {
 	if(GPIO_PinRead(forwardLeftSensor) == 0)
 	{//OVO JE SVE ISPRAVNO
-		stop(SOFT_STOP);																//1
-		_delay_ms(2000);																//2
-		rotate(-50,40,NULL);//rotira se zato sto se on sam rotira | nemam pojma zasto	//3
-		_delay_ms(1000);																//4
-		moveOnDirection(10,40,NULL);//malo ide nazad									//5
-		moveOnDirection(-230,50,NULL);//popne se do pola								//6
-		_delay_ms(100);																	//7
-		servo_position(170);//podigni servo / pusti tepih								//8
-		_delay_ms(100);																	//9
-		moveOnDirection(-190,50,NULL);//popne se do kralja								//10	
-		moveOnDirection(-10,40,NULL);//malo cimne										//11
-		while(1);																		//12
+		stop(SOFT_STOP);																
+		_delay_ms(2000);																
+		rotate(-50,40,NULL);//rotira se zato sto se on sam | nemam pojma zasto	
+		_delay_ms(1000);																
+		moveOnDirection(10,40,NULL);//malo ide napred
+		_delay_ms(100);											
+		moveOnDirection(-230,50,NULL);//popne se do pola								
+		_delay_ms(100);																	
+		servo_position(170);//podigni servo / pusti tepih								
+		_delay_ms(100);																	
+		moveOnDirection(-190,50,NULL);//popne se do kralja									
+		moveOnDirection(-10,40,NULL);//malo cimne										
+		while(1);																		
 	}
 	else
 	{
@@ -40,7 +41,7 @@ const moveOnDirectionFields yellowSideTacticOnePositions[TACTIC_ONE_POSITION_COU
 {
 	//SERVO STAVITI NA MAX
 	{-200, 90, NULL},//ide do centra							//1
-	{-400, 40, stepDetection}//popne se, ali ceka detekciju		//2
+	{-300, 40, stepDetection}//popne se, ali ceka detekciju		//2	
 };
 
 
@@ -79,10 +80,10 @@ void yellowSide(void)
 					
 				}
 				
-				if(currentPosition == 0)//rotira se za 85 za stepenice
+				if(currentPosition == 0)//rotira se za 86 za stepenice
 				{
 					_delay_ms(1000);
-					rotate(85 ,40, NULL);
+ 					rotate(86 ,50, NULL);
 					_delay_ms(1000);	
 				}
 				else if(currentPosition == 1)
