@@ -20,7 +20,7 @@ int main(void)
 	systemInit();
 	while(1)
 		{
-			yellowSide();
+			greenSide();
 		}
 		
 }

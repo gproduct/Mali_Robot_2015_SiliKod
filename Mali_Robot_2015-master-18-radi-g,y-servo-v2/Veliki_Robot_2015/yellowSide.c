@@ -41,8 +41,9 @@ char stepDetection(void)
 const moveOnDirectionFields yellowSideTacticOnePositions[TACTIC_ONE_POSITION_COUNT] =
 {
 
-	{-230,90,NULL},//ide do pola stola				//1	
-	{-750,40,NULL}//popne se				//2
+	{-220,90,NULL},//ide do pola stola							//1	
+	{-530,40,NULL},
+	{-200,40,NULL}
 };
 
 
@@ -89,8 +90,14 @@ void yellowSide(void)
 				}
 				else if(currentPosition == 1)
 				{
+					_delay_ms(100);
+					servo_position(180);
+					_delay_ms(100);
+				}
+				else if(currentPosition == 2)
+				{
 					_delay_ms(1000);
-					rotate(-90,40,NULL);//gojkovic reko da stavim :D (samo da bolje izgleda) 
+					rotate(-90,40,NULL);//gojkovic reko da stavim :D (samo da bolje izgleda)
 					while(1);
 				}
 			}//end for
