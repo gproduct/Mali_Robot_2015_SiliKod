@@ -7,26 +7,21 @@
 #include "sides.h"
 #include "usart.h"
 
-char stepDetection(void)
+char driveByYellow(void)
 {
-	if(GPIO_PinRead(forwardLeftSensor) == 0 || GPIO_PinRead(forwardRightSensor) == 0)//ovaj drugi moramo da probamo
+	_delay_ms(4500);
+	servo_position(190);
+	
+	return 0;
+}
+char detectEnemyYellow(void)
+{
+	if(GPIO_PinRead(forwardLeftSensor) == 1 || GPIO_PinRead(forwardRightSensor) == 1)
 	{
-		/*stop(SOFT_STOP);																
-		_delay_ms(2000);																
-		rotate(-50,40,NULL);//rotira se zato sto se on sam | nemam pojma zasto	
-		_delay_ms(1000);																
-		moveOnDirection(10,40,NULL);//malo ide napred
-		_delay_ms(100);											
-		moveOnDirection(-230,50,NULL);//popne se do pola								
-		_delay_ms(100);																	
-		servo_position(170);//podigni servo / pusti tepih								
-		_delay_ms(100);																	
-		moveOnDirection(-190,50,NULL);//popne se do kralja									
-		moveOnDirection(-10,40,NULL);//malo cimne	*/
-		_delay_ms(5000);					
-		while(1);																		
+																			
 	}
-	else
+	return 0;
+	if(GPIO_PinRead(backwardLeftSensor) == 1 || GPIO_PinRead(backwardRightSensor) == 1)
 	{
 		
 	}
@@ -41,9 +36,8 @@ char stepDetection(void)
 const moveOnDirectionFields yellowSideTacticOnePositions[TACTIC_ONE_POSITION_COUNT] =
 {
 
-	{-220,90,NULL},//ide do pola stola							//1	
-	{-530,40,NULL}/*,//do pola se popne							//2
-	{-200,40,NULL}//popne se									//3	*/
+	{-220,90,detectEnemyYellow},//ide do pola stola									//1	
+	{-730,40,driveByYellow}//popne se									//2
 };
 
 
@@ -89,12 +83,6 @@ void yellowSide(void)
 					_delay_ms(1000);	
 				}
 				else if(currentPosition == 1)
-				{
-					_delay_ms(100);
-					servo_position(180);
-					_delay_ms(100);
-				}
-				else if(currentPosition == 2)
 				{
 					_delay_ms(1000);
 					rotate(-90,40,NULL);//gojkovic reko da stavim :D (samo da bolje izgleda)

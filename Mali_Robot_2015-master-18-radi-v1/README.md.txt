@@ -1,1 +1,1 @@
-Dobar dan!
+Ovo se samo popne!ne radi servo
