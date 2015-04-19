@@ -88,6 +88,14 @@ Discarded input sections
  .text          0x00000000        0x0 greenSide.o
  .data          0x00000000        0x0 greenSide.o
  .bss           0x00000000        0x0 greenSide.o
+ .text.driveByGreen
+                0x00000000        0x0 greenSide.o
+ .text.detectEnemyGreen
+                0x00000000        0x0 greenSide.o
+ .rodata.greenSideTacticOnePositions
+                0x00000000        0x0 greenSide.o
+ .text.greenSide
+                0x00000000        0x0 greenSide.o
  .text          0x00000000        0x0 main.o
  .data          0x00000000        0x0 main.o
  .bss           0x00000000        0x0 main.o
@@ -135,14 +143,6 @@ Discarded input sections
  .text          0x00000000        0x0 yellowSide.o
  .data          0x00000000        0x0 yellowSide.o
  .bss           0x00000000        0x0 yellowSide.o
- .text.driveByYellow
-                0x00000000        0x0 yellowSide.o
- .text.detectEnemyYellow
-                0x00000000        0x0 yellowSide.o
- .rodata.yellowSideTacticOnePositions
-                0x00000000        0x0 yellowSide.o
- .text.yellowSide
-                0x00000000        0x0 yellowSide.o
  .text          0x00000000        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51\libm.a(addsf3.o)
  .data          0x00000000        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51\libm.a(addsf3.o)
  .bss           0x00000000        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51\libm.a(addsf3.o)
@@ -353,7 +353,7 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr51\libgcc.a
 .rela.plt
  *(.rela.plt)
 
-.text           0x00000000     0x378a
+.text           0x00000000     0x3782
  *(.vectors)
  .vectors       0x00000000       0x94 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51/crtcan128.o
                 0x00000000                __vectors
@@ -460,156 +460,156 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr51\libgcc.a
  .text.CAN_Write
                 0x000012b6      0x102 can.o
                 0x000012b6                CAN_Write
- .text.driveByGreen
-                0x000013b8      0x112 greenSide.o
-                0x000013b8                driveByGreen
- .text.detectEnemyGreen
-                0x000014ca       0x24 greenSide.o
-                0x000014ca                detectEnemyGreen
- .text.greenSide
-                0x000014ee      0x390 greenSide.o
-                0x000014ee                greenSide
- .text.main     0x0000187e       0x10 main.o
-                0x0000187e                main
+ .text.main     0x000013b8       0x12 main.o
+                0x000013b8                main
  .text.moveOnDirection
-                0x0000188e      0x4b4 odometry.o
-                0x0000188e                moveOnDirection
+                0x000013ca      0x4b4 odometry.o
+                0x000013ca                moveOnDirection
  .text.setPosition
-                0x00001d42      0x384 odometry.o
-                0x00001d42                setPosition
- .text.rotate   0x000020c6      0x5f2 odometry.o
-                0x000020c6                rotate
+                0x0000187e      0x384 odometry.o
+                0x0000187e                setPosition
+ .text.rotate   0x00001c02      0x614 odometry.o
+                0x00001c02                rotate
  .text.GPIO_PinRegister
-                0x000026b8      0x154 system.o
-                0x000026b8                GPIO_PinRegister
+                0x00002216      0x156 system.o
+                0x00002216                GPIO_PinRegister
  .text.GPIO_PinRead
-                0x0000280c       0x6e system.o
-                0x0000280c                GPIO_PinRead
+                0x0000236c       0x6e system.o
+                0x0000236c                GPIO_PinRead
  .text.GPIO_ReadFromRegister
-                0x0000287a       0x6c system.o
-                0x0000287a                GPIO_ReadFromRegister
+                0x000023da       0x6c system.o
+                0x000023da                GPIO_ReadFromRegister
  .text.fillDebaunsingData
-                0x000028e6       0x7a system.o
-                0x000028e6                fillDebaunsingData
+                0x00002446       0x7a system.o
+                0x00002446                fillDebaunsingData
  .text.Timer_Init
-                0x00002960       0x8c system.o
-                0x00002960                Timer_Init
+                0x000024c0       0x8c system.o
+                0x000024c0                Timer_Init
  .text.__vector_12
-                0x000029ec       0x5e system.o
-                0x000029ec                __vector_12
+                0x0000254c       0x5e system.o
+                0x0000254c                __vector_12
  .text.systemInit
-                0x00002a4a      0x14a system.o
-                0x00002a4a                systemInit
+                0x000025aa      0x14a system.o
+                0x000025aa                systemInit
  .text.servo_init
-                0x00002b94      0x132 system.o
-                0x00002b94                servo_init
+                0x000026f4      0x132 system.o
+                0x000026f4                servo_init
  .text.servo_position
-                0x00002cc6       0xb8 system.o
-                0x00002cc6                servo_position
+                0x00002826       0xb8 system.o
+                0x00002826                servo_position
  .text.__vector_23
-                0x00002d7e       0x82 usart.o
-                0x00002d7e                __vector_23
+                0x000028de       0x82 usart.o
+                0x000028de                __vector_23
  .text.__vector_21
-                0x00002e00       0x90 usart.o
-                0x00002e00                __vector_21
+                0x00002960       0x90 usart.o
+                0x00002960                __vector_21
  .text.__vector_34
-                0x00002e90       0x82 usart.o
-                0x00002e90                __vector_34
+                0x000029f0       0x82 usart.o
+                0x000029f0                __vector_34
  .text.__vector_32
-                0x00002f12       0x90 usart.o
-                0x00002f12                __vector_32
+                0x00002a72       0x90 usart.o
+                0x00002a72                __vector_32
+ .text.driveByYellow
+                0x00002b02      0x104 yellowSide.o
+                0x00002b02                driveByYellow
+ .text.detectEnemyYellow
+                0x00002c06       0x20 yellowSide.o
+                0x00002c06                detectEnemyYellow
+ .text.yellowSide
+                0x00002c26      0x374 yellowSide.o
+                0x00002c26                yellowSide
  .text.avr-libc.fplib
-                0x00002fa2        0xa c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51\libm.a(addsf3.o)
-                0x00002fa2                __subsf3
-                0x00002fa4                __addsf3
+                0x00002f9a        0xa c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51\libm.a(addsf3.o)
+                0x00002f9a                __subsf3
+                0x00002f9c                __addsf3
  .text.avr-libc.fplib
-                0x00002fac       0xc0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51\libm.a(addsf3x.o)
-                0x00002fc6                __addsf3x
+                0x00002fa4       0xc0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51\libm.a(addsf3x.o)
+                0x00002fbe                __addsf3x
  .text.avr-libc.fplib
-                0x0000306c        0x8 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51\libm.a(cmpsf2.o)
-                0x0000306c                __lesf2
-                0x0000306c                __nesf2
-                0x0000306c                __eqsf2
-                0x0000306c                __cmpsf2
-                0x0000306c                __ltsf2
+                0x00003064        0x8 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51\libm.a(cmpsf2.o)
+                0x00003064                __lesf2
+                0x00003064                __nesf2
+                0x00003064                __eqsf2
+                0x00003064                __cmpsf2
+                0x00003064                __ltsf2
  .text.avr-libc.fplib
-                0x00003074        0x4 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51\libm.a(divsf3.o)
-                0x00003074                __divsf3
+                0x0000306c        0x4 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51\libm.a(divsf3.o)
+                0x0000306c                __divsf3
  .text.avr-libc.fplib
-                0x00003078       0xcc c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51\libm.a(divsf3x.o)
-                0x0000308e                __divsf3x
-                0x00003092                __divsf3_pse
+                0x00003070       0xcc c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51\libm.a(divsf3x.o)
+                0x00003086                __divsf3x
+                0x0000308a                __divsf3_pse
  .text.avr-libc.fplib
-                0x00003144       0x58 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51\libm.a(fixunssfsi.o)
-                0x00003144                __fixunssfsi
+                0x0000313c       0x58 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51\libm.a(fixunssfsi.o)
+                0x0000313c                __fixunssfsi
  .text.avr-libc.fplib
-                0x0000319c       0x7a c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51\libm.a(floatsisf.o)
-                0x000031a0                __floatsisf
-                0x0000319c                __floatunsisf
+                0x00003194       0x7a c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51\libm.a(floatsisf.o)
+                0x00003198                __floatsisf
+                0x00003194                __floatunsisf
  .text.avr-libc.fplib
-                0x00003216       0x7c c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51\libm.a(floatundisf.o)
-                0x00003216                __floatundisf
-                0x00003218                __fp_di2sf
+                0x0000320e       0x7c c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51\libm.a(floatundisf.o)
+                0x0000320e                __floatundisf
+                0x00003210                __fp_di2sf
  .text.avr-libc.fplib
-                0x00003292       0x48 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51\libm.a(fp_cmp.o)
-                0x00003292                __fp_cmp
+                0x0000328a       0x48 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51\libm.a(fp_cmp.o)
+                0x0000328a                __fp_cmp
  .text.avr-libc.fplib
-                0x000032da        0xc c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51\libm.a(fp_inf.o)
-                0x000032da                __fp_inf
+                0x000032d2        0xc c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51\libm.a(fp_inf.o)
+                0x000032d2                __fp_inf
  .text.avr-libc.fplib
-                0x000032e6        0x6 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51\libm.a(fp_nan.o)
-                0x000032e6                __fp_nan
+                0x000032de        0x6 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51\libm.a(fp_nan.o)
+                0x000032de                __fp_nan
  .text.avr-libc.fplib
-                0x000032ec        0xe c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51\libm.a(fp_pscA.o)
-                0x000032ec                __fp_pscA
+                0x000032e4        0xe c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51\libm.a(fp_pscA.o)
+                0x000032e4                __fp_pscA
  .text.avr-libc.fplib
-                0x000032fa        0xe c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51\libm.a(fp_pscB.o)
-                0x000032fa                __fp_pscB
+                0x000032f2        0xe c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51\libm.a(fp_pscB.o)
+                0x000032f2                __fp_pscB
  .text.avr-libc.fplib
-                0x00003308       0x22 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51\libm.a(fp_round.o)
-                0x00003308                __fp_round
+                0x00003300       0x22 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51\libm.a(fp_round.o)
+                0x00003300                __fp_round
  .text.avr-libc.fplib
-                0x0000332a       0x44 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51\libm.a(fp_split3.o)
-                0x0000332a                __fp_split3
-                0x0000333a                __fp_splitA
+                0x00003322       0x44 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51\libm.a(fp_split3.o)
+                0x00003322                __fp_split3
+                0x00003332                __fp_splitA
  .text.avr-libc.fplib
-                0x0000336e        0xe c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51\libm.a(fp_zero.o)
-                0x0000336e                __fp_zero
-                0x00003370                __fp_szero
+                0x00003366        0xe c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51\libm.a(fp_zero.o)
+                0x00003366                __fp_zero
+                0x00003368                __fp_szero
  .text.avr-libc.fplib
-                0x0000337c        0x8 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51\libm.a(gesf2.o)
-                0x0000337c                __gtsf2
-                0x0000337c                __gesf2
+                0x00003374        0x8 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51\libm.a(gesf2.o)
+                0x00003374                __gtsf2
+                0x00003374                __gesf2
  .text.avr-libc.fplib
-                0x00003384        0x4 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51\libm.a(mulsf3.o)
-                0x00003384                __mulsf3
+                0x0000337c        0x4 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51\libm.a(mulsf3.o)
+                0x0000337c                __mulsf3
  .text.avr-libc.fplib
-                0x00003388       0xc2 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51\libm.a(mulsf3x.o)
-                0x000033a0                __mulsf3_pse
-                0x0000339c                __mulsf3x
- .text.libgcc   0x0000344a       0x3e c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr51\libgcc.a(_mulsi3.o)
-                0x0000344a                __mulsi3
- .text.libgcc   0x00003488       0x44 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr51\libgcc.a(_udivmodsi4.o)
-                0x00003488                __udivmodsi4
- .text.libgcc   0x000034cc       0x38 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr51\libgcc.a(_prologue.o)
-                0x000034cc                __prologue_saves__
- .text.libgcc   0x00003504       0x36 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr51\libgcc.a(_epilogue.o)
-                0x00003504                __epilogue_restores__
+                0x00003380       0xc2 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51\libm.a(mulsf3x.o)
+                0x00003398                __mulsf3_pse
+                0x00003394                __mulsf3x
+ .text.libgcc   0x00003442       0x3e c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr51\libgcc.a(_mulsi3.o)
+                0x00003442                __mulsi3
+ .text.libgcc   0x00003480       0x44 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr51\libgcc.a(_udivmodsi4.o)
+                0x00003480                __udivmodsi4
+ .text.libgcc   0x000034c4       0x38 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr51\libgcc.a(_prologue.o)
+                0x000034c4                __prologue_saves__
+ .text.libgcc   0x000034fc       0x36 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr51\libgcc.a(_epilogue.o)
+                0x000034fc                __epilogue_restores__
  .text.avr-libc
-                0x0000353a       0x34 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51\libc.a(calloc.o)
-                0x0000353a                calloc
+                0x00003532       0x34 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51\libc.a(calloc.o)
+                0x00003532                calloc
  .text.avr-libc
-                0x0000356e      0x20a c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51\libc.a(malloc.o)
-                0x0000356e                malloc
-                0x000036c8                free
+                0x00003566      0x20a c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51\libc.a(malloc.o)
+                0x00003566                malloc
+                0x000036c0                free
  .text.avr-libc
-                0x00003778        0xe c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51\libc.a(memset.o)
-                0x00003778                memset
-                0x00003786                . = ALIGN (0x2)
+                0x00003770        0xe c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr51\libc.a(memset.o)
+                0x00003770                memset
+                0x0000377e                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00003786        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr51\libgcc.a(_exit.o)
-                0x00003786                exit
-                0x00003786                _exit
+ .fini9         0x0000377e        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr51\libgcc.a(_exit.o)
+                0x0000377e                exit
+                0x0000377e                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -628,11 +628,11 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr51\libgcc.a
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00003786        0x4 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr51\libgcc.a(_exit.o)
+ .fini0         0x0000377e        0x4 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr51\libgcc.a(_exit.o)
  *(.fini0)
-                0x0000378a                _etext = .
+                0x00003782                _etext = .
 
-.data           0x00800100      0x110 load address 0x0000378a
+.data           0x00800100      0x110 load address 0x00003782
                 0x00800100                PROVIDE (__data_start, .)
  *(.data)
  .data          0x00800100      0x100 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr51\libgcc.a(_clz.o)
@@ -644,9 +644,9 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr51\libgcc.a
  *(.data*)
  *(.rodata)
  *(.rodata*)
- .rodata.greenSideTacticOnePositions
-                0x00800206        0xa greenSide.o
-                0x00800206                greenSideTacticOnePositions
+ .rodata.yellowSideTacticOnePositions
+                0x00800206        0xa yellowSide.o
+                0x00800206                yellowSideTacticOnePositions
  *(.gnu.linkonce.d*)
                 0x00800210                . = ALIGN (0x2)
                 0x00800210                _edata = .
@@ -702,8 +702,8 @@ LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr51\libgcc.a
                 0x00800364                __brkval
                 0x00800366                __flp
                 0x00800368                PROVIDE (__bss_end, .)
-                0x0000378a                __data_load_start = LOADADDR (.data)
-                0x0000389a                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00003782                __data_load_start = LOADADDR (.data)
+                0x00003892                __data_load_end = (__data_load_start + SIZEOF (.data))
 
 .noinit         0x00800368        0x0
                 0x00800368                PROVIDE (__noinit_start, .)

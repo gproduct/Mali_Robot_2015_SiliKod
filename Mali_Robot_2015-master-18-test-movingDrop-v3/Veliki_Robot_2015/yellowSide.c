@@ -18,7 +18,7 @@ char detectEnemyYellow(void)
 {
 	if(GPIO_PinRead(forwardLeftSensor) == 1 || GPIO_PinRead(forwardRightSensor) == 1)
 	{
-																			
+									
 	}
 	return 0;
 	if(GPIO_PinRead(backwardLeftSensor) == 1 || GPIO_PinRead(backwardRightSensor) == 1)
@@ -35,9 +35,8 @@ char detectEnemyYellow(void)
 *************************************************************************************************************************************************************************************/
 const moveOnDirectionFields yellowSideTacticOnePositions[TACTIC_ONE_POSITION_COUNT] =
 {
-
 	{-220,90,detectEnemyYellow},//ide do pola stola									//1	
-	{-730,40,driveByYellow}//popne se									//2
+	{-730,40,driveByYellow}//popne se												//2
 };
 
 

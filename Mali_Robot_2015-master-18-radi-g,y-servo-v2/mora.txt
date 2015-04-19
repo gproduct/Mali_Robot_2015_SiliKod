@@ -1,1 +1,1 @@
-sve radi, sa servo, ima green i yelow side
+sve radi, sa servo, ima green i yelow side, ali nema drive by

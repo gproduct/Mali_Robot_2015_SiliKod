@@ -35,7 +35,7 @@ char detectEnemyGreen(void)
 const moveOnDirectionFields greenSideTacticOnePositions[TACTIC_ONE_POSITION_COUNT] =
 {
 	{-220,90,detectEnemyGreen},//ide do pola stola							//1
-	{-750,40,driveByGreen}
+	{-750,40,driveByGreen}//popne se										//2	//proveri ti jer je 30 vise nego yellow side
 };
 
 
