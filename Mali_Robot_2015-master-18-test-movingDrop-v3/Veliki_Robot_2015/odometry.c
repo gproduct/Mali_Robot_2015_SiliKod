@@ -25,9 +25,10 @@ char stop(char type)
 	}
 }
 
-char moveOnDirection(int distance, unsigned char speed, char (*callback)(void))
+char moveOnDirection(int distance, unsigned char speed, char (*callback)(unsigned long startTime))
 {
 	unsigned char buffer[8], callbackReturnValue;
+	unsigned long time;
 	
 	buffer[0] = 'V';
 	buffer[1] = speed;
@@ -40,6 +41,7 @@ char moveOnDirection(int distance, unsigned char speed, char (*callback)(void))
 	while(CAN_Write(buffer, DRIVER_TX_IDENTIFICATOR))
 		_delay_ms(50);;
 	
+	time = getSystemTime();
 	while (1)
 	{
 		buffer[0] = 'P';
@@ -58,7 +60,7 @@ char moveOnDirection(int distance, unsigned char speed, char (*callback)(void))
 		
 		if(callback != NULL)
 		{
-			callbackReturnValue = callback();
+			callbackReturnValue = callback(time);
 			if(callbackReturnValue == 1)
 				return ODOMETRY_FAIL;
 			if(callbackReturnValue == 2)
@@ -67,9 +69,10 @@ char moveOnDirection(int distance, unsigned char speed, char (*callback)(void))
 	}
 }
 
-char gotoXY(position coordinates, unsigned char speed, signed char direction, char (*callback)(void))
+char gotoXY(position coordinates, unsigned char speed, signed char direction, char (*callback)(unsigned long startTime))
 {
 	unsigned char buffer[8], callbackReturnValue;
+	unsigned long time;
 	
 	buffer[0] = 'V';
 	buffer[1] = speed;
@@ -86,6 +89,7 @@ char gotoXY(position coordinates, unsigned char speed, signed char direction, ch
 	while(CAN_Write(buffer, DRIVER_TX_IDENTIFICATOR))
 		_delay_ms(50);
 		
+	time = getSystemTime();
 	while (1)
 	{
 		buffer[0] = 'P';
@@ -103,7 +107,7 @@ char gotoXY(position coordinates, unsigned char speed, signed char direction, ch
 		_delay_ms(50);
 		if(callback != NULL)
 		{
-			callbackReturnValue = callback();
+			callbackReturnValue = callback(time);
 			if(callbackReturnValue == 1)
 				return ODOMETRY_FAIL;
 			if(callbackReturnValue == 2)
@@ -144,9 +148,10 @@ char setPosition(position coordinates)
 	}
 }
 
-char rotate(int angle,unsigned char speed, char (*callback)(void))
+char rotate(int angle,unsigned char speed, char (*callback)(unsigned long startTime))
 {
 	unsigned char buffer[8], callbackReturnValue;
+	unsigned long time;
 	
 	buffer[0] = 'V';
 	buffer[1] = speed;
@@ -160,6 +165,7 @@ char rotate(int angle,unsigned char speed, char (*callback)(void))
 	while(CAN_Write(buffer, DRIVER_TX_IDENTIFICATOR))
 		_delay_ms(50);
 	
+	time = getSystemTime();
 	while(1)
 	{
 		buffer[0] = 'P';
@@ -178,7 +184,7 @@ char rotate(int angle,unsigned char speed, char (*callback)(void))
 		_delay_ms(50);
 		if(callback != NULL)
 		{
-			callbackReturnValue = callback();
+			callbackReturnValue = callback(time);
 			if(callbackReturnValue == 1)
 				return ODOMETRY_FAIL;
 			if(callbackReturnValue == 2)
@@ -187,9 +193,10 @@ char rotate(int angle,unsigned char speed, char (*callback)(void))
 	}
 }
 
-char setAngle(int angle, unsigned char speed, char (*callback)(void))
+char setAngle(int angle, unsigned char speed, char (*callback)(unsigned long startTime))
 {
 	unsigned char buffer[8], callbackReturnValue;
+	unsigned long time;
 	
 	buffer[0] = 'V';
 	buffer[1] = speed;
@@ -202,6 +209,7 @@ char setAngle(int angle, unsigned char speed, char (*callback)(void))
 	while(CAN_Write(buffer, DRIVER_TX_IDENTIFICATOR))
 		_delay_ms(50);
 		
+	time = getSystemTime();
 	while(1)
 	{
 		buffer[0] = 'P';
@@ -219,7 +227,7 @@ char setAngle(int angle, unsigned char speed, char (*callback)(void))
 		_delay_ms(50);
 		if(callback != NULL)
 		{
-			callbackReturnValue = callback();
+			callbackReturnValue = callback(time);
 			if(callbackReturnValue == 1)
 				return ODOMETRY_FAIL;
 			if(callbackReturnValue == 2)

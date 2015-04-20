@@ -17,6 +17,7 @@ typedef struct gpio GPIOData;
 
 static volatile GPIOData *gpios[MAX_INPUTS];
 static volatile unsigned char inputsNumber = 0;
+static volatile long systemTime;
 
 unsigned char GPIO_PinRegister(volatile unsigned char *baseAddress, unsigned char pin)
 {
@@ -85,6 +86,7 @@ ISR(TIMER1_COMPA_vect)
     #if USE_TIMER_HOOK == 1
     Timer_Hook();
     #endif // USE_TIMER_HOOK
+	systemTime++;
 }
 
 void systemInit(void)
@@ -95,11 +97,18 @@ void systemInit(void)
 	CAN_Init(4);
 	
 	forwardLeftSensor = GPIO_PinRegister(GPIOA_BASE, 7); // PREDNJI LEVI SENZOR ZA STEPENICE
-	forwardRightSensor = GPIO_PinRegister(GPIOA_BASE, 4); // PREDNJI DESNI SENZOR 
-	backwardLeftSensor = GPIO_PinRegister(GPIOA_BASE, 6); // ZADNJI LEVI SENZOR
+	forwardRightSensor = GPIO_PinRegister(GPIOA_BASE, 0); // PREDNJI DESNI SENZOR //promenjen za 0
+	backwardLeftSensor = GPIO_PinRegister(GPIOA_BASE, 4); // ZADNJI LEVI SENZOR	//promenjen za 4
 	backwardRightSensor = GPIO_PinRegister(GPIOA_BASE, 5);	//ZADNJI DESNI SENZOR
 	
-	_delay_ms(1000);
+	systemTime = 0;
+	
+	carpetsReleased = 0;
+}
+
+unsigned long getSystemTime(void)
+{
+	return systemTime;
 }
 
 void servo_init(unsigned int f_pwm)
@@ -118,6 +127,7 @@ void servo_init(unsigned int f_pwm)
 
 //Zatvoren drzac za klapne je na 250
 //Otvoren drzac za klapne je na 180
+//ali stavimo 190 za sigurno
 void servo_position(unsigned char dutyCycle)
 {
 	if (dutyCycle > 250 || dutyCycle < 165)

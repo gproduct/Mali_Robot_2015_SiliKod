@@ -7,26 +7,39 @@
 #include "sides.h"
 #include "usart.h"
 
+/*char driveByGreen(unsigned long startTime)
+{
+	if(carpetsReleased == 0)
+	{
+		if(getSystemTime() - startTime >= 4000)
+		{
+			servo_position(190);
+		}
+	}
+	return 0;
+}*/
 char driveByYellow(void)
 {
-	_delay_ms(4500);
-	servo_position(190);
-	
-	return 0;
+	if(carpetsReleased == 0)
+	{
+		_delay_ms(3300);
+		servo_position(190);
+		_delay_ms(1000);
+		servo_position(0);//iskljucen
+		carpetsReleased = 1;	
+	}
 }
-char detectEnemyYellow(void)
+char detectEnemyYellow(unsigned long startTime)
 {
 	if(GPIO_PinRead(forwardLeftSensor) == 1 || GPIO_PinRead(forwardRightSensor) == 1)
 	{
-									
-	}
-	return 0;
-	if(GPIO_PinRead(backwardLeftSensor) == 1 || GPIO_PinRead(backwardRightSensor) == 1)
-	{
-		
+		_delay_ms(3000);
 	}
 	return 0;
 }
+
+
+
 
 
 
@@ -35,13 +48,9 @@ char detectEnemyYellow(void)
 *************************************************************************************************************************************************************************************/
 const moveOnDirectionFields yellowSideTacticOnePositions[TACTIC_ONE_POSITION_COUNT] =
 {
-	{-220,90,detectEnemyYellow},//ide do pola stola									//1	
-	{-730,40,driveByYellow}//popne se												//2
+	{-220,90,detectEnemyYellow},//ide do pola stola							//1//provereno dobro (gostojic kaze ;) )
+	{-710,40,driveByYellow}//popne se										//2	proveriti jer je 30 vise nego yellow side
 };
-
-
-
-
 /*************************************************************************************************************************************************************************************
 																				ZUTA STRANA
 *************************************************************************************************************************************************************************************/
@@ -77,14 +86,15 @@ void yellowSide(void)
 				
 				if(currentPosition == 0)
 				{
-					_delay_ms(1000);
- 					rotate(79,50,NULL);//rotira se za stepenice
-					_delay_ms(1000);	
+					_delay_ms(100);
+ 					rotate(79,50,NULL);//rotira se za stepenice // originalno 79
+					_delay_ms(100);	
 				}
 				else if(currentPosition == 1)
 				{
-					_delay_ms(1000);
-					rotate(-90,40,NULL);//gojkovic reko da stavim :D (samo da bolje izgleda)
+					_delay_ms(500);
+					servo_position(250);
+					rotate(90,40,NULL);
 					while(1);
 				}
 			}//end for
