@@ -3,9 +3,14 @@
 #include <stdlib.h>
 #include "system.h"
 #include "odometry.h"
-#include "can.h"
+#include "can.h"z
 #include "sides.h"
 #include "usart.h"
+
+
+
+//NO TAC CODE HOCE PERA KILL
+
 
 /*char driveByGreen(unsigned long startTime)
 {
@@ -22,17 +27,20 @@ char driveByGreen(void)
 {
 	if(carpetsReleased == 0)
 	{
-		_delay_ms(3650);
+		_delay_ms(3550);
 		servo_position(190);
+		_delay_ms(1000);
+		servo_position(0);//iskljucen
 		
 		carpetsReleased = 1;	
 	}
 }
 char detectEnemyGreen(unsigned long startTime)
 {
-	if(GPIO_PinRead(forwardLeftSensor) == 1 || GPIO_PinRead(forwardRightSensor) == 1)
+	if(GPIO_PinRead(forwardRightSensor) == 0 || GPIO_PinRead(forwardLeftSensor) == 0)
 	{
-		_delay_ms(3000);
+		stop(SOFT_STOP);
+		_delay_ms(2000);
 	}
 	return 0;
 }
@@ -46,8 +54,8 @@ char detectEnemyGreen(unsigned long startTime)
 *************************************************************************************************************************************************************************************/
 const moveOnDirectionFields greenSideTacticOnePositions[TACTIC_ONE_POSITION_COUNT] =
 {
-	{-217,90,detectEnemyGreen},//ide do pola stola							//1//provereno dobro (gostojic kaze ;) )
-	{-790,40,driveByGreen}//popne se										//2	proveriti jer je 30 vise nego yellow side
+	{-220,80,detectEnemyGreen},//ide do pola stola							//1//provereno dobro (gostojic kaze ;) ) 
+	{-790,50,driveByGreen}//popne se										//2	proveriti jer je 30 vise nego yellow side	
 };
 /*************************************************************************************************************************************************************************************
 																				ZELENA STRANA
@@ -83,9 +91,9 @@ void greenSide(void)
 				}
 				if(currentPosition == 0)
 				{
-					_delay_ms(100);
+					_delay_ms(1000);
 					rotate(-83,50,NULL);//rotira se za stepenice
-					_delay_ms(100);
+					_delay_ms(1000);
 				}
 				else if(currentPosition == 1)
 				{

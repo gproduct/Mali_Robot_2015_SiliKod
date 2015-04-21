@@ -22,7 +22,7 @@ char driveByYellow(void)
 {
 	if(carpetsReleased == 0)
 	{
-		_delay_ms(3300);
+		_delay_ms(3000);
 		servo_position(190);
 		_delay_ms(1000);
 		servo_position(0);//iskljucen
@@ -31,9 +31,10 @@ char driveByYellow(void)
 }
 char detectEnemyYellow(unsigned long startTime)
 {
-	if(GPIO_PinRead(forwardLeftSensor) == 1 || GPIO_PinRead(forwardRightSensor) == 1)
+	if(GPIO_PinRead(forwardLeftSensor) == 0 || GPIO_PinRead(forwardRightSensor) == 0)
 	{
-		_delay_ms(3000);
+		stop(SOFT_STOP);
+		_delay_ms(1000);
 	}
 	return 0;
 }
@@ -48,8 +49,8 @@ char detectEnemyYellow(unsigned long startTime)
 *************************************************************************************************************************************************************************************/
 const moveOnDirectionFields yellowSideTacticOnePositions[TACTIC_ONE_POSITION_COUNT] =
 {
-	{-220,90,detectEnemyYellow},//ide do pola stola							//1//provereno dobro (gostojic kaze ;) )
-	{-710,40,driveByYellow}//popne se										//2	proveriti jer je 30 vise nego yellow side
+	{-227,90,detectEnemyYellow},//ide do pola stola							//1//provereno dobro (gostojic kaze ;) ) //original 217
+	{-730,40,driveByYellow}//popne se										//2	proveriti jer je 30 vise nego yellow side
 };
 /*************************************************************************************************************************************************************************************
 																				ZUTA STRANA
@@ -86,15 +87,14 @@ void yellowSide(void)
 				
 				if(currentPosition == 0)
 				{
-					_delay_ms(100);
- 					rotate(79,50,NULL);//rotira se za stepenice // originalno 79
-					_delay_ms(100);	
+					_delay_ms(1000);
+					rotate(76,50,NULL);//rotira se za stepenice
+					_delay_ms(1000);
 				}
 				else if(currentPosition == 1)
 				{
 					_delay_ms(500);
 					servo_position(250);
-					rotate(90,40,NULL);
 					while(1);
 				}
 			}//end for

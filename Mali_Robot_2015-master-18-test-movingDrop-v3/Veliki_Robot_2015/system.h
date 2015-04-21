@@ -10,6 +10,7 @@
 #define GPIOD_BASE 0x2B
 #define GPIOE_BASE 0x2E
 #define GPIOG_BASE 0x34
+#define GPIOF_BASE 0x31
 
 unsigned char GPIO_PinRegister(volatile unsigned char *baseAddress, unsigned char pin);
 unsigned char GPIO_PinRead(unsigned char pinHandler);
@@ -19,11 +20,12 @@ void fillDebaunsingData(void);
 void Timer_Init(unsigned int freq);
 
 unsigned char forwardLeftSensor, backwardLeftSensor, forwardRightSensor, backwardRightSensor;
-unsigned char carpetsReleased;
+unsigned char carpetsReleased, changeSides;
 
 void systemInit(void);
 unsigned long getSystemTime(void);
 
 void servo_init(unsigned int f_pwm);
 void servo_position(unsigned char dutyCycle);
+
 #endif

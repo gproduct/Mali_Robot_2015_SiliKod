@@ -20,17 +20,14 @@ int main(void)
 	systemInit();
 	while(1)
 		{
+			/*if(GPIO_PinRead(changeSides) == 1)
+			{	
+				greenSide();
+			}else
+			{	
+				yellowSide();
+			}*/
 			yellowSide();
-			/*
-			if(GPIO_PinRead(za greenSide ili yellowSide prekidac) == 1)
-			{
-				//zavisi
-			}
-			else
-			{
-				//zavisi
-			}
-			*/
 		}
 		
 }
