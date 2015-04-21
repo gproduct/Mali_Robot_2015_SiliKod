@@ -100,7 +100,7 @@ void systemInit(void)
 	forwardRightSensor = GPIO_PinRegister(GPIOA_BASE, 0); // PREDNJI DESNI SENZOR //promenjen za 0
 	backwardLeftSensor = GPIO_PinRegister(GPIOA_BASE, 4); // ZADNJI LEVI SENZOR	//promenjen za 4
 	backwardRightSensor = GPIO_PinRegister(GPIOA_BASE, 5);	//ZADNJI DESNI SENZOR
-	changeSide = GPIO_PinRegister(GPIOA_BASE, );//change green side i yellow side
+	changeSide = GPIO_PinRegister(GPIOF_BASE, 7);//change green side i yellow side
 	systemTime = 0;
 	
 	carpetsReleased = 0;
