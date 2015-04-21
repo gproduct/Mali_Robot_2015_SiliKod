@@ -97,6 +97,8 @@ void greenSide(void)
 				}
 				else if(currentPosition == 1)
 				{
+					//rotacija
+					
 					_delay_ms(500);
 					servo_position(250);
 					while(1);

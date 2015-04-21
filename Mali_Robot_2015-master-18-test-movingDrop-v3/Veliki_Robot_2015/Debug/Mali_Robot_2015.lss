@@ -5677,8 +5677,8 @@ Disassembly of section .text:
     2d32:	09 f0       	breq	.+2      	; 0x2d36 <driveByYellow+0x1e>
     2d34:	df c0       	rjmp	.+446    	; 0x2ef4 <driveByYellow+0x1dc>
     2d36:	80 e0       	ldi	r24, 0x00	; 0
-    2d38:	90 e8       	ldi	r25, 0x80	; 128
-    2d3a:	ab e3       	ldi	r26, 0x3B	; 59
+    2d38:	90 ea       	ldi	r25, 0xA0	; 160
+    2d3a:	ae e3       	ldi	r26, 0x3E	; 62
     2d3c:	b5 e4       	ldi	r27, 0x45	; 69
     2d3e:	89 8f       	std	Y+25, r24	; 0x19
     2d40:	9a 8f       	std	Y+26, r25	; 0x1a

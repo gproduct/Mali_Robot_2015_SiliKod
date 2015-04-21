@@ -22,7 +22,7 @@ char driveByYellow(void)
 {
 	if(carpetsReleased == 0)
 	{
-		_delay_ms(3000);
+		_delay_ms(3050);
 		servo_position(190);
 		_delay_ms(1000);
 		servo_position(0);//iskljucen
@@ -50,7 +50,7 @@ char detectEnemyYellow(unsigned long startTime)
 const moveOnDirectionFields yellowSideTacticOnePositions[TACTIC_ONE_POSITION_COUNT] =
 {
 	{-227,90,detectEnemyYellow},//ide do pola stola							//1//provereno dobro (gostojic kaze ;) ) //original 217
-	{-730,40,driveByYellow}//popne se										//2	proveriti jer je 30 vise nego yellow side
+	{-705,40,driveByYellow}//popne se										//2	proveriti jer je 30 vise nego yellow side
 };
 /*************************************************************************************************************************************************************************************
 																				ZUTA STRANA
@@ -93,6 +93,7 @@ void yellowSide(void)
 				}
 				else if(currentPosition == 1)
 				{
+					//rotacija
 					_delay_ms(500);
 					servo_position(250);
 					while(1);
