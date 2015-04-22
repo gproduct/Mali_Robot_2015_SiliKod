@@ -8,7 +8,6 @@
 #include "usart.h"
 
 
-
 //NO TAC CODE HOCE PERA KILL
 
 
@@ -37,7 +36,7 @@ char driveByGreen(void)
 }
 char detectEnemyGreen(unsigned long startTime)
 {
-	if(GPIO_PinRead(forwardRightSensor) == 0 || GPIO_PinRead(forwardLeftSensor) == 0)
+	if(GPIO_PinRead(forwardRightSensor) == 1 || GPIO_PinRead(forwardLeftSensor) == 1)
 	{
 		stop(SOFT_STOP);
 		_delay_ms(2000);
@@ -98,8 +97,8 @@ void greenSide(void)
 				else if(currentPosition == 1)
 				{
 					//rotacija
-					
-					_delay_ms(500);
+					/*rotate(90,40,NULL);
+					_delay_ms(500);*/
 					servo_position(250);
 					while(1);
 				}			

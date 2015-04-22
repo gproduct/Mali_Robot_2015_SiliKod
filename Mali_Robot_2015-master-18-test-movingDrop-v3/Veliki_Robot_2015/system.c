@@ -35,8 +35,10 @@ unsigned char GPIO_PinRegister(volatile unsigned char *baseAddress, unsigned cha
 	for(i = 0; i < 3; i++)
 		gpios[inputsNumber]->buffer[i] = 0;
 
-	_MMIO_BYTE(baseAddress - 1) &= ~(1 << pin);
-	_MMIO_BYTE(baseAddress) |= (1 << pin);
+	//_MMIO_BYTE(baseAddress - 1) &= ~(1 << pin);
+	_MMIO_BYTE(baseAddress - 1) &= (0 << pin);
+	//_MMIO_BYTE(baseAddress) |= (1 << pin);
+	_MMIO_BYTE(baseAddress) &= (0 << pin);
 
 	i = inputsNumber;
 	inputsNumber++;
@@ -46,7 +48,7 @@ unsigned char GPIO_PinRegister(volatile unsigned char *baseAddress, unsigned cha
 
 unsigned char GPIO_PinRead(unsigned char pinHandler)
 {
-	return !( (gpios[pinHandler]->buffer[0]) | (gpios[pinHandler]->buffer[1]) | (gpios[pinHandler]->buffer[2]) );
+	return ( (gpios[pinHandler]->buffer[0]) & (gpios[pinHandler]->buffer[1]) & (gpios[pinHandler]->buffer[2]) );
 }
 
 unsigned char GPIO_ReadFromRegister(unsigned char pinHandler)
@@ -96,11 +98,11 @@ void systemInit(void)
 	DDRG = 0xFF;
 	CAN_Init(4);
 	
-	forwardLeftSensor = GPIO_PinRegister(GPIOA_BASE, 7); // PREDNJI LEVI SENZOR ZA STEPENICE
+	forwardLeftSensor = GPIO_PinRegister(GPIOA_BASE, 2); // PREDNJI LEVI SENZOR ZA STEPENICE
 	forwardRightSensor = GPIO_PinRegister(GPIOA_BASE, 0); // PREDNJI DESNI SENZOR //promenjen za 0
-	backwardLeftSensor = GPIO_PinRegister(GPIOA_BASE, 4); // ZADNJI LEVI SENZOR	//promenjen za 4
-	backwardRightSensor = GPIO_PinRegister(GPIOA_BASE, 5);	//ZADNJI DESNI SENZOR
-	changeSides = GPIO_PinRegister(GPIOA_BASE, 2);	//CHANGE SIDES
+	backwardLeftSensor = GPIO_PinRegister(GPIOA_BASE, 3); // ZADNJI LEVI SENZOR	
+	backwardRightSensor = GPIO_PinRegister(GPIOA_BASE, 1);	//ZADNJI DESNI SENZOR
+	changeSides = GPIO_PinRegister(GPIOB_BASE, 0);	//CHANGE SIDES
 	systemTime = 0;
 	
 	carpetsReleased = 0;

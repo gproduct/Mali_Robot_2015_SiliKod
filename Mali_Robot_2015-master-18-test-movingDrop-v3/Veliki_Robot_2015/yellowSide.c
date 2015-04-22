@@ -31,7 +31,7 @@ char driveByYellow(void)
 }
 char detectEnemyYellow(unsigned long startTime)
 {
-	if(GPIO_PinRead(forwardLeftSensor) == 0 || GPIO_PinRead(forwardRightSensor) == 0)
+	if(GPIO_PinRead(forwardLeftSensor) == 1 || GPIO_PinRead(forwardRightSensor) == 1)
 	{
 		stop(SOFT_STOP);
 		_delay_ms(1000);
@@ -74,6 +74,7 @@ void yellowSide(void)
 			for (currentPosition = nextPosition; currentPosition < TACTIC_ONE_POSITION_COUNT; currentPosition++)
 			{
 				// mozda ubaciti if-else sa akcijama tipa regularno- kretanje, i alternativno- sta god
+				
 				odometryStatus = moveOnDirection(yellowSideTacticOnePositions[currentPosition].distance, yellowSideTacticOnePositions[currentPosition].speed, yellowSideTacticOnePositions[currentPosition].detectionCallback);
 				
 				if(odometryStatus == ODOMETRY_FAIL)
@@ -94,7 +95,8 @@ void yellowSide(void)
 				else if(currentPosition == 1)
 				{
 					//rotacija
-					_delay_ms(500);
+					/*rotate(90,40,NULL);
+					_delay_ms(500);*/
 					servo_position(250);
 					while(1);
 				}

@@ -18,16 +18,17 @@
 int main(void)
 {
 	systemInit();
+	_delay_ms(100);
 	while(1)
 		{
-			/*if(GPIO_PinRead(changeSides) == 1)
+			if(GPIO_PinRead(changeSides) == 0)
 			{	
 				greenSide();
-			}else
-			{	
+			}
+			else if(GPIO_PinRead(changeSides) == 1)
+			{
 				yellowSide();
-			}*/
-			yellowSide();
+			}
 		}
 		
 }
