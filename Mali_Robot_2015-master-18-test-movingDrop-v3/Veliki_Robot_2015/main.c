@@ -19,6 +19,7 @@ int main(void)
 {
 	systemInit();
 	_delay_ms(100);
+	while(jumperCheck() == 1);
 	while(1)
 		{
 			if(GPIO_PinRead(changeSides) == 0)

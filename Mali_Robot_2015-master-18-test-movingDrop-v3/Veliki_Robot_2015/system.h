@@ -19,10 +19,11 @@ void fillDebaunsingData(void);
 
 void Timer_Init(unsigned int freq);
 
-unsigned char forwardLeftSensor, backwardLeftSensor, forwardRightSensor, backwardRightSensor;
-unsigned char carpetsReleased, changeSides;
+unsigned char forwardLeftSensor, backwardLeftSensor, forwardRightSensor, backwardRightSensor,jumper;
+unsigned char carpetsReleased, changeSides, jumper;
 
 void systemInit(void);
+int jumperCheck(void);
 unsigned long getSystemTime(void);
 
 void servo_init(unsigned int f_pwm);

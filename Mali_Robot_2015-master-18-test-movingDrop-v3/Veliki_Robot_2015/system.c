@@ -103,6 +103,7 @@ void systemInit(void)
 	backwardLeftSensor = GPIO_PinRegister(GPIOA_BASE, 3); // ZADNJI LEVI SENZOR	
 	backwardRightSensor = GPIO_PinRegister(GPIOA_BASE, 1);	//ZADNJI DESNI SENZOR
 	changeSides = GPIO_PinRegister(GPIOB_BASE, 0);	//CHANGE SIDES
+	jumper = GPIO_PinRegister(GPIOB_BASE, 7);
 	systemTime = 0;
 	
 	carpetsReleased = 0;
@@ -112,7 +113,15 @@ unsigned long getSystemTime(void)
 {
 	return systemTime;
 }
-
+int jumperCheck(void)
+{
+	if (GPIO_PinRead(jumper) == 1)
+	{
+		return 0;
+	}
+	
+	return 1;
+}//END OF jumperCheck
 void servo_init(unsigned int f_pwm)
 {
 	DDRE |= (1 << PINE3) | (1 << PINE4) | (1 << PINE5);
