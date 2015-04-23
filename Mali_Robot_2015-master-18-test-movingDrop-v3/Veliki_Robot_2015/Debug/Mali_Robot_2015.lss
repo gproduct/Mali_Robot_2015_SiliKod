@@ -5960,9 +5960,9 @@ Disassembly of section .text:
     2f86:	60 e0       	ldi	r22, 0x00	; 0
     2f88:	12 de       	rcall	.-988    	; 0x2bae <GPIO_PinRegister>
     2f8a:	80 93 6e 03 	sts	0x036E, r24
-    2f8e:	85 e2       	ldi	r24, 0x25	; 37
+    2f8e:	81 e3       	ldi	r24, 0x31	; 49
     2f90:	90 e0       	ldi	r25, 0x00	; 0
-    2f92:	67 e0       	ldi	r22, 0x07	; 7
+    2f92:	60 e0       	ldi	r22, 0x00	; 0
     2f94:	0c de       	rcall	.-1000   	; 0x2bae <GPIO_PinRegister>
     2f96:	80 93 71 03 	sts	0x0371, r24
     2f9a:	10 92 62 02 	sts	0x0262, r1

@@ -103,7 +103,7 @@ void systemInit(void)
 	backwardLeftSensor = GPIO_PinRegister(GPIOA_BASE, 3); // ZADNJI LEVI SENZOR	
 	backwardRightSensor = GPIO_PinRegister(GPIOA_BASE, 1);	//ZADNJI DESNI SENZOR
 	changeSides = GPIO_PinRegister(GPIOB_BASE, 0);	//CHANGE SIDES
-	jumper = GPIO_PinRegister(GPIOB_BASE, 7);
+	jumper = GPIO_PinRegister(GPIOF_BASE, 0);
 	systemTime = 0;
 	
 	carpetsReleased = 0;
