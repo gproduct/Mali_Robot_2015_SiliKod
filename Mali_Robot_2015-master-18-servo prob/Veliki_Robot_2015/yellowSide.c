@@ -3,13 +3,9 @@
 #include <stdlib.h>
 #include "system.h"
 #include "odometry.h"
-#include "can.h"z
+#include "can.h"
 #include "sides.h"
 #include "usart.h"
-
-
-//NO TAC CODE HOCE PERA KILL
-
 
 /*char driveByGreen(unsigned long startTime)
 {
@@ -22,21 +18,20 @@
 	}
 	return 0;
 }*/
-char driveByGreen(void)
+char driveByYellow(void)
 {
 	if(carpetsReleased == 0)
 	{
-		_delay_ms(3650);
+		_delay_ms(3050);
 		servo_position(190);
 		_delay_ms(1000);
 		servo_position(0);//iskljucen
-		
 		carpetsReleased = 1;	
 	}
 }
-char detectEnemyGreen(unsigned long startTime)
+char detectEnemyYellow(unsigned long startTime)
 {
-	if(GPIO_PinRead(forwardRightSensor) == 1 || GPIO_PinRead(forwardLeftSensor) == 1)
+	if(GPIO_PinRead(forwardLeftSensor) == 1 || GPIO_PinRead(forwardRightSensor) == 1)
 	{
 		stop(SOFT_STOP);
 		_delay_ms(1000);
@@ -48,18 +43,19 @@ char detectEnemyGreen(unsigned long startTime)
 
 
 
+
 /*************************************************************************************************************************************************************************************
-											 					POZICIJE,BRZINE,SMEROVI I DETEKCIJE ZA ZELENU STRANU
+																POZICIJE,BRZINE,SMEROVI I DETEKCIJE ZA ZUTU STRANU
 *************************************************************************************************************************************************************************************/
-const moveOnDirectionFields greenSideTacticOnePositions[TACTIC_ONE_POSITION_COUNT] =
+const moveOnDirectionFields yellowSideTacticOnePositions[TACTIC_ONE_POSITION_COUNT] =
 {
-	{-228,80,detectEnemyGreen},//ide do pola stola							//1//provereno dobro (gostojic kaze ;) ) 
-	{-790,50,driveByGreen}//popne se										//2	proveriti jer je 30 vise nego yellow side	
+	{-227,90,detectEnemyYellow},//ide do pola stola							//1//provereno dobro (gostojic kaze ;) ) //original 217
+	{-705,40,driveByYellow}//popne se										//2	proveriti jer je 30 vise nego yellow side
 };
 /*************************************************************************************************************************************************************************************
-																				ZELENA STRANA
+																				ZUTA STRANA
 *************************************************************************************************************************************************************************************/
-void greenSide(void)
+void yellowSide(void)
 {
 	position startingPosition;
 	unsigned char currentPosition = 0, nextPosition = 0, odometryStatus;
@@ -78,7 +74,8 @@ void greenSide(void)
 			for (currentPosition = nextPosition; currentPosition < TACTIC_ONE_POSITION_COUNT; currentPosition++)
 			{
 				// mozda ubaciti if-else sa akcijama tipa regularno- kretanje, i alternativno- sta god
-				odometryStatus = moveOnDirection(greenSideTacticOnePositions[currentPosition].distance, greenSideTacticOnePositions[currentPosition].speed, greenSideTacticOnePositions[currentPosition].detectionCallback);
+				
+				odometryStatus = moveOnDirection(yellowSideTacticOnePositions[currentPosition].distance, yellowSideTacticOnePositions[currentPosition].speed, yellowSideTacticOnePositions[currentPosition].detectionCallback);
 				
 				if(odometryStatus == ODOMETRY_FAIL)
 				{
@@ -88,10 +85,11 @@ void greenSide(void)
 				{
 					
 				}
+				
 				if(currentPosition == 0)
 				{
 					_delay_ms(1000);
-					rotate(-83,50,NULL);//rotira se za stepenice
+					rotate(76,50,NULL);//rotira se za stepenice
 					_delay_ms(1000);
 				}
 				else if(currentPosition == 1)
@@ -101,11 +99,10 @@ void greenSide(void)
 					_delay_ms(500);*/
 					servo_position(250);
 					while(1);
-				}			
-			}//end for				
+				}
+			}//end for
 			break;
 		}
 	}//end while(1)
-	
 	
 }

@@ -22,14 +22,18 @@ int main(void)
 	
 	while(1)
 		{
-			if(GPIO_PinRead(changeSides) == 0)
+			/*if(GPIO_PinRead(changeSides) == 0)
 			{	
 				greenSide();
 			}
 			else if(GPIO_PinRead(changeSides) == 1)
 			{
 				yellowSide();
-			}
+			}*/
+			servo_position(190);
+			_delay_ms(1000);
+			servo_position(0);//iskljucen
+			while(1);
 		}
 		
 }
