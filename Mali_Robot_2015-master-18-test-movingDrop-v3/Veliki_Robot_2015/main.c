@@ -14,7 +14,20 @@
 	servo_position(250);
 	_delay_ms(1000);
 }*/
-
+void Timer_Hook(void)
+{
+	if(matchIsStarted() == 1 && getSystemTime() > 90000)
+	{
+		PORTG = 0xff;
+		stop(HARD_STOP);
+		while(1);
+	}
+}
+/*
+_delay_ms(200);
+while(greenSideTacticOnePositions[currentPosition].detectionCallback(0) != 0)
+_delay_ms(100);
+*/
 int main(void)
 {
 	systemInit();

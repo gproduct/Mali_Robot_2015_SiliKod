@@ -7,17 +7,6 @@
 #include "sides.h"
 #include "usart.h"
 
-/*char driveByGreen(unsigned long startTime)
-{
-	if(carpetsReleased == 0)
-	{
-		if(getSystemTime() - startTime >= 4000)
-		{
-			servo_position(190);
-		}
-	}
-	return 0;
-}*/
 char driveByYellow(void)
 {
 	if(carpetsReleased == 0)
@@ -85,7 +74,7 @@ char detectEnemyYellow(unsigned long startTime)
 const moveOnDirectionFields yellowSideTacticOnePositions[TACTIC_ONE_POSITION_COUNT] =
 {
 	{-208,80,detectEnemyYellow},//ide do pola stola							//1//provereno dobro (gostojic kaze ;) ) //original 212
-	{-715,40,driveByYellow}//popne se										//2	proveriti jer je 30 vise nego yellow side//original 705
+	{-725,40,driveByYellow}//popne se										//2	proveriti jer je 30 vise nego yellow side//original 705
 };
 /*************************************************************************************************************************************************************************************
 																				ZUTA STRANA

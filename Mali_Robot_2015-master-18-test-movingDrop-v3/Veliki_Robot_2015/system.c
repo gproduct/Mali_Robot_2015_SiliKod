@@ -18,7 +18,7 @@ typedef struct gpio GPIOData;
 static volatile GPIOData *gpios[MAX_INPUTS];
 static volatile unsigned char inputsNumber = 0;
 static volatile long systemTime;
-
+static volatile unsigned char matchStarted = 0;
 unsigned char GPIO_PinRegister(volatile unsigned char *baseAddress, unsigned char pin)
 {
 	if(inputsNumber >= MAX_INPUTS)
@@ -104,11 +104,13 @@ void systemInit(void)
 	backwardRightSensor = GPIO_PinRegister(GPIOA_BASE, 1);	//ZADNJI DESNI SENZOR
 	changeSides = GPIO_PinRegister(GPIOB_BASE, 0);	//CHANGE SIDES
 	jumper = GPIO_PinRegister(GPIOF_BASE, 0);
-	systemTime = 0;
+	
 	checkSensor = 0;
 	carpetsReleased = 0;
 	
 	while(jumperCheck() == 1);
+	matchStarted = 1;
+	systemTime = 0;
 }
 
 unsigned long getSystemTime(void)
@@ -149,4 +151,8 @@ void servo_position(unsigned char dutyCycle)
 	}
 	
 	OCR3A = ((double)ICR3 / 255) * dutyCycle + 0.5;
+}
+unsigned char matchIsStarted(void)
+{
+	return matchStarted;
 }

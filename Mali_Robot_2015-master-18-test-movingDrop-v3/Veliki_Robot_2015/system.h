@@ -2,7 +2,7 @@
 #define SYSTEM_H_
 
 #define MAX_INPUTS	    10
-#define USE_TIMER_HOOK  0
+#define USE_TIMER_HOOK  1
 
 #define GPIOA_BASE 0x22
 #define GPIOB_BASE 0x25
@@ -21,6 +21,7 @@ void Timer_Init(unsigned int freq);
 
 unsigned char forwardLeftSensor, backwardLeftSensor, forwardRightSensor, backwardRightSensor,jumper;
 unsigned char carpetsReleased, changeSides, jumper, checkSensor;
+unsigned char matchIsStarted(void);
 
 void systemInit(void);
 int jumperCheck(void);

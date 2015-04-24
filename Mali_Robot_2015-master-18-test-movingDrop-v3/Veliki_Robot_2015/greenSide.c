@@ -11,17 +11,7 @@
 //NO TAC CODE HOCE PERA KILL
 
 
-/*char driveByGreen(unsigned long startTime)
-{
-	if(carpetsReleased == 0)
-	{
-		if(getSystemTime() - startTime >= 4000)
-		{
-			servo_position(190);
-		}
-	}
-	return 0;
-}*/
+
 char driveByGreen(void)
 {
 	if(carpetsReleased == 0)
@@ -36,30 +26,45 @@ char driveByGreen(void)
 }
 char detectEnemyGreen(unsigned long startTime)
 {
-	if(GPIO_PinRead(forwardRightSensor) == 1 || GPIO_PinRead(forwardLeftSensor) == 1)
+	if(GPIO_PinRead(forwardLeftSensor) == 1 || GPIO_PinRead(forwardRightSensor) == 1)
 	{
 		if(checkSensor == 0)
 		{//slow | samo detekcija da izadje veliki | samo da baci
-			if(getSystemTime() - startTime >= 500)
+			
+			if(getSystemTime() - startTime >= 1000 && getSystemTime() - startTime <= 1100)
 			{
 				stop(SOFT_STOP);
 				_delay_ms(2000);
-				PORTG = 0xff;
+				moveOnDirection(-155,90,NULL);
 			}
-			else if(getSystemTime() - startTime >= 1000)
+			else if(getSystemTime() - startTime >= 1100 && getSystemTime() - startTime <= 1200)
 			{
 				stop(SOFT_STOP);
 				_delay_ms(2000);
-				moveOnDirection(-150,90,NULL);
+				moveOnDirection(-142,90,NULL);
 			}
-			else if(getSystemTime() - startTime >= 2000)
+			else if(getSystemTime() - startTime >= 1200 && getSystemTime() - startTime <= 1300)
 			{
 				stop(SOFT_STOP);
 				_delay_ms(2000);
-				PORTG = 0xff;
+				moveOnDirection(-125,90,NULL);
 			}
+			else if(getSystemTime() - startTime >= 1300 && getSystemTime() - startTime <= 1400)
+			{
+				stop(SOFT_STOP);
+				_delay_ms(2000);
+				moveOnDirection(-90,90,NULL);
+			}
+			else if(getSystemTime() - startTime >= 1350)
+			{
+				stop(SOFT_STOP);
+				_delay_ms(2000);
+				moveOnDirection(-80,90,NULL);
+			}
+			//dotle brate mili
+			
+			
 		}
-
 	}
 	return 0;
 }
@@ -73,8 +78,8 @@ char detectEnemyGreen(unsigned long startTime)
 *************************************************************************************************************************************************************************************/
 const moveOnDirectionFields greenSideTacticOnePositions[TACTIC_ONE_POSITION_COUNT] =
 {
-	{-208,80,detectEnemyGreen},//ide do pola stola							//1//provereno dobro (gostojic kaze ;) ) 
-	{-715,50,driveByGreen}//popne se										//2	proveriti jer je 30 vise nego yellow side	//90
+	{-213,80,detectEnemyGreen},//ide do pola stola							//1//provereno dobro (gostojic kaze ;) ) 
+	{-725,50,driveByGreen}//popne se										//2	proveriti jer je 30 vise nego yellow side	//90
 };
 /*************************************************************************************************************************************************************************************
 																				ZELENA STRANA
