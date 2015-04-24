@@ -7323,8 +7323,8 @@ Disassembly of section .text:
     3ad6:	09 f0       	breq	.+2      	; 0x3ada <driveByYellow+0x1e>
     3ad8:	df c0       	rjmp	.+446    	; 0x3c98 <driveByYellow+0x1dc>
     3ada:	80 e0       	ldi	r24, 0x00	; 0
-    3adc:	90 ec       	ldi	r25, 0xC0	; 192
-    3ade:	a1 e4       	ldi	r26, 0x41	; 65
+    3adc:	90 e4       	ldi	r25, 0x40	; 64
+    3ade:	ae e4       	ldi	r26, 0x4E	; 78
     3ae0:	b5 e4       	ldi	r27, 0x45	; 69
     3ae2:	89 8f       	std	Y+25, r24	; 0x19
     3ae4:	9a 8f       	std	Y+26, r25	; 0x1a
