@@ -20,7 +20,7 @@ void fillDebaunsingData(void);
 void Timer_Init(unsigned int freq);
 
 unsigned char forwardLeftSensor, backwardLeftSensor, forwardRightSensor, backwardRightSensor,jumper;
-unsigned char carpetsReleased, changeSides, jumper, checkSensor;
+unsigned char carpetsReleased, changeSides, jumper, sensorCheck;
 
 void systemInit(void);
 int jumperCheck(void);

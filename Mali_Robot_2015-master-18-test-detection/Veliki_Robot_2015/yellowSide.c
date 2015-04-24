@@ -7,13 +7,14 @@
 #include "sides.h"
 #include "usart.h"
 
-/*char driveByGreen(unsigned long startTime)
+/*char detectNiggasGreen(unsigned long startTime)
 {
-	if(carpetsReleased == 0)
+	if(sensorCheck == 0)
 	{
-		if(getSystemTime() - startTime >= 4000)
+		if(getSystemTime() - startTime >= 1000)
 		{
-			servo_position(190);
+			stop(SOFT_STOP);
+			sensorCheck = 1;
 		}
 	}
 	return 0;
@@ -33,43 +34,39 @@ char detectEnemyYellow(unsigned long startTime)
 {
 	if(GPIO_PinRead(forwardLeftSensor) == 1 || GPIO_PinRead(forwardRightSensor) == 1)
 	{
-		if(checkSensor == 0)
-		{//slow | samo detekcija da izadje veliki | samo da baci
+		/*if(getSystemTime() - startTime >= 1000)
+		{
 			
-			if(getSystemTime() - startTime >= 1000 && getSystemTime() - startTime <= 1100)
-			{
-				stop(SOFT_STOP);
-				_delay_ms(2000);
-				moveOnDirection(-155,90,NULL);
-			}
-			else if(getSystemTime() - startTime >= 1100 && getSystemTime() - startTime <= 1200)
-			{
-				stop(SOFT_STOP);
-				_delay_ms(2000);
-				moveOnDirection(-142,90,NULL);
-			}
-			else if(getSystemTime() - startTime >= 1200 && getSystemTime() - startTime <= 1300)
-			{
-				stop(SOFT_STOP);
-				_delay_ms(2000);
-				moveOnDirection(-125,90,NULL);
-			}
-			else if(getSystemTime() - startTime >= 1300 && getSystemTime() - startTime <= 1400)
-			{
-				stop(SOFT_STOP);
-				_delay_ms(2000);
-				moveOnDirection(-90,90,NULL);
-			}
-			else if(getSystemTime() - startTime >= 1350)
-			{
-				stop(SOFT_STOP);
-				_delay_ms(2000);
-				moveOnDirection(-80,90,NULL);
-			}
-			//dotle brate mili
+			stop(SOFT_STOP);
+			PORTG = 0xff;
+			_delay_ms(4000);
+			moveOnDirection(-150,80,NULL);
+		}
+		else if(getSystemTime() - startTime >= 2000)
+		{
 			
+			stop(SOFT_STOP);
+			PORTG = 0xff;
+			_delay_ms(4000);
 			
 		}
+		
+			stop(SOFT_STOP);
+			PORTG = 0xff;
+			_delay_ms(4000);
+			int tempTime = (int) getSystemTime() - startTime;
+			moveOnDirection(-(tempTime/10),80,NULL);
+		}
+		else if(getSystemTime() - startTime >= 1500)
+		{
+			stop(SOFT_STOP);
+			sensorCheck = 1;
+		}
+		else if(getSystemTime() - startTime >= 2000)
+		{
+			stop(SOFT_STOP);
+			sensorCheck = 1;
+		}*/
 	}
 	return 0;
 }
@@ -84,8 +81,8 @@ char detectEnemyYellow(unsigned long startTime)
 *************************************************************************************************************************************************************************************/
 const moveOnDirectionFields yellowSideTacticOnePositions[TACTIC_ONE_POSITION_COUNT] =
 {
-	{-208,80,detectEnemyYellow},//ide do pola stola							//1//provereno dobro (gostojic kaze ;) ) //original 212
-	{-715,40,driveByYellow}//popne se										//2	proveriti jer je 30 vise nego yellow side//original 705
+	{-208,90,detectEnemyYellow},//ide do pola stola							//1//provereno dobro (gostojic kaze ;) ) //original 212
+	{-705,40,driveByYellow}//popne se										//2	proveriti jer je 30 vise nego yellow side
 };
 /*************************************************************************************************************************************************************************************
 																				ZUTA STRANA
@@ -95,6 +92,7 @@ void yellowSide(void)
 	position startingPosition;
 	unsigned char currentPosition = 0, nextPosition = 0, odometryStatus;
 	unsigned char activeState = TACTIC_ONE;
+	unsigned long startTime = getSystemTime();
 	
 	startingPosition.x = 0;
 	startingPosition.y = 0;
@@ -103,6 +101,12 @@ void yellowSide(void)
 	
 	while (1)
 	{
+		/*GASENJE POSLE 90 SEKUNDI
+		if(getSystemTime() - startTime >= 5000)
+		{
+			while(1);
+		}
+		*/
 		switch(activeState)
 		{
 			case TACTIC_ONE:
@@ -123,17 +127,36 @@ void yellowSide(void)
 				
 				if(currentPosition == 0)
 				{
+					char *tempTimeString;
+					int tempTime = (int) getSystemTime() - startTime;
+					sprintf(tempTimeString, "%d", tempTime);
+					UART0_Init(9600, 1);
+					//UART0_Write(*tempTimeString);
+						UART0_Write('a');
+					if(UART0_Read())
+					{
+						while(1)
+						{
+							PORTG = 0xFF;
+							_delay_ms(500);
+							PORTG = 0x00;
+							_delay_ms(500);
+						};
+					}
+					while(1);
+					/*
 					_delay_ms(1000);
 					rotate(72,50,NULL);//rotira se za stepenice 76
 					_delay_ms(1000);
+					*/
 				}
 				else if(currentPosition == 1)
 				{
 					//rotacija
-					/*rotate(90,40,NULL);
-					_delay_ms(500);*/
+					/*
 					servo_position(250);
 					while(1);
+					*/
 				}
 			}//end for
 			break;

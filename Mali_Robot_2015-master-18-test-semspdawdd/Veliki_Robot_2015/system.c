@@ -105,7 +105,7 @@ void systemInit(void)
 	changeSides = GPIO_PinRegister(GPIOB_BASE, 0);	//CHANGE SIDES
 	jumper = GPIO_PinRegister(GPIOF_BASE, 0);
 	systemTime = 0;
-	checkSensor = 0;
+	sensorCheck = 0;
 	carpetsReleased = 0;
 	
 	while(jumperCheck() == 1);

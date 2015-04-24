@@ -38,28 +38,8 @@ char detectEnemyGreen(unsigned long startTime)
 {
 	if(GPIO_PinRead(forwardRightSensor) == 1 || GPIO_PinRead(forwardLeftSensor) == 1)
 	{
-		if(checkSensor == 0)
-		{//slow | samo detekcija da izadje veliki | samo da baci
-			if(getSystemTime() - startTime >= 500)
-			{
-				stop(SOFT_STOP);
-				_delay_ms(2000);
-				PORTG = 0xff;
-			}
-			else if(getSystemTime() - startTime >= 1000)
-			{
-				stop(SOFT_STOP);
-				_delay_ms(2000);
-				moveOnDirection(-150,90,NULL);
-			}
-			else if(getSystemTime() - startTime >= 2000)
-			{
-				stop(SOFT_STOP);
-				_delay_ms(2000);
-				PORTG = 0xff;
-			}
-		}
-
+		stop(SOFT_STOP);
+		_delay_ms(1000);
 	}
 	return 0;
 }
@@ -73,8 +53,8 @@ char detectEnemyGreen(unsigned long startTime)
 *************************************************************************************************************************************************************************************/
 const moveOnDirectionFields greenSideTacticOnePositions[TACTIC_ONE_POSITION_COUNT] =
 {
-	{-208,80,detectEnemyGreen},//ide do pola stola							//1//provereno dobro (gostojic kaze ;) ) 
-	{-715,50,driveByGreen}//popne se										//2	proveriti jer je 30 vise nego yellow side	//90
+	{-228,80,detectEnemyGreen},//ide do pola stola							//1//provereno dobro (gostojic kaze ;) ) 
+	{-790,50,driveByGreen}//popne se										//2	proveriti jer je 30 vise nego yellow side	
 };
 /*************************************************************************************************************************************************************************************
 																				ZELENA STRANA
