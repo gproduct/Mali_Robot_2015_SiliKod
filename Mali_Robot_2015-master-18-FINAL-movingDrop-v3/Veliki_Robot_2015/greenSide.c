@@ -25,7 +25,7 @@ char driveByGreen(void)
 	if(carpetsReleased == 0)
 	{
 		_delay_ms(3650);
-		servo_position(190);
+		servo_position(180);
 		_delay_ms(1000);
 		servo_position(0);//iskljucen
 		

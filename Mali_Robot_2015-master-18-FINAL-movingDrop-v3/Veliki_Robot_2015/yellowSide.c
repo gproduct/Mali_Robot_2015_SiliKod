@@ -12,7 +12,7 @@ char driveByYellow(void)
 	if(carpetsReleased == 0)
 	{
 		_delay_ms(3300);//3100
-		servo_position(190);
+		servo_position(180);
 		_delay_ms(1000);
 		servo_position(0);//iskljucen
 		carpetsReleased = 1;	
@@ -121,6 +121,7 @@ void yellowSide(void)
 				
 				if(currentPosition == 0)
 				{
+					
 					_delay_ms(500);
 					rotate(72,50,NULL);//rotira se za stepenice 76
 					_delay_ms(500);
@@ -130,7 +131,7 @@ void yellowSide(void)
 					//rotacija
 					/*rotate(90,40,NULL);
 					_delay_ms(500);*/
-					servo_position(250);
+					
 					while(1);
 				}
 			}//end for
