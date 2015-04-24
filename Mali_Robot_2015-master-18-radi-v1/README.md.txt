@@ -1,1 +1,0 @@
-Ovo se samo popne!ne radi servo
