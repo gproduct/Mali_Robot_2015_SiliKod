@@ -71,19 +71,13 @@ char detectEnemyYellow(unsigned long startTime)
 	}
 	return 0;
 }
-
-
-
-
-
-
 /*************************************************************************************************************************************************************************************
 																POZICIJE,BRZINE,SMEROVI I DETEKCIJE ZA ZUTU STRANU
 *************************************************************************************************************************************************************************************/
 const moveOnDirectionFields yellowSideTacticOnePositions[TACTIC_ONE_POSITION_COUNT] =
 {
-	{-208,80,detectEnemyYellow},//ide do pola stola							//1//provereno dobro (gostojic kaze ;) ) //original 212
-	{-725,40,driveByYellow}//popne se										//2	proveriti jer je 30 vise nego yellow side//original 705
+	{-215,80,detectEnemyYellow},//ide do pola stola							//1//provereno dobro (gostojic kaze ;) ) //original 208
+	{-735,40,driveByYellow}//popne se										//2	proveriti jer je 30 vise nego yellow side//original 705
 };
 /*************************************************************************************************************************************************************************************
 																				ZUTA STRANA
@@ -123,7 +117,7 @@ void yellowSide(void)
 				{
 					
 					_delay_ms(500);
-					rotate(72,50,NULL);//rotira se za stepenice 76
+					rotate(75,50,NULL);//rotira se za stepenice original:	76
 					_delay_ms(500);
 				}
 				else if(currentPosition == 1)

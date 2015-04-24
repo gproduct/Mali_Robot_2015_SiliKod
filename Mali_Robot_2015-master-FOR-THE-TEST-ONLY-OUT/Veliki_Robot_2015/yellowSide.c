@@ -23,12 +23,15 @@ char detectEnemyYellow(unsigned long startTime)
 	if(GPIO_PinRead(forwardLeftSensor) == 1 || GPIO_PinRead(forwardRightSensor) == 1)
 	{
 		if(checkSensor == 0)
-		{
+		{	
 			
+		
 			//URADI DA KAD DETEKTUJE DA SAMO STOJI DOK NE DETEKTUJE NISTA
 			
 			
 		}
+		
+		return 1;
 	}
 	return 0;
 }
@@ -63,6 +66,19 @@ void yellowSide(void)
 	{
 		switch(activeState)
 		{
+			case COLLISION:
+				if(currentPosition == 0)
+				{
+					while(detectEnemyYellow(0) == 1)
+					{
+						PORTG = 0xFF;
+						_delay_ms(100);
+					}
+					PORTG = 0;
+					activeState = TACTIC_ONE;
+					nextPosition = currentPosition;
+				}
+				break;
 			case TACTIC_ONE:
 			for (currentPosition = nextPosition; currentPosition < TACTIC_ONE_POSITION_COUNT; currentPosition++)
 			{
@@ -72,7 +88,9 @@ void yellowSide(void)
 				
 				if(odometryStatus == ODOMETRY_FAIL)
 				{
-
+					activeState = COLLISION;
+					nextPosition = currentPosition;
+					break;
 				}
 				else if(odometryStatus == ODOMETRY_STUCK)
 				{

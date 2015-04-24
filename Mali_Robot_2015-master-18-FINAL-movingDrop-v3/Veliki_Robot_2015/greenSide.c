@@ -87,7 +87,7 @@ char detectEnemyGreen(unsigned long startTime)
 const moveOnDirectionFields greenSideTacticOnePositions[TACTIC_ONE_POSITION_COUNT] =
 {
 	{-218,80,detectEnemyGreen},//ide do pola stola							//1//provereno dobro (gostojic kaze ;) ) 
-	{-725,50,driveByGreen}//popne se										//2	proveriti jer je 30 vise nego yellow side	//90
+	{-750,50,driveByGreen}//popne se										//2	proveriti jer je 30 vise nego yellow side	//90
 };
 /*************************************************************************************************************************************************************************************
 																				ZELENA STRANA
@@ -132,7 +132,6 @@ void greenSide(void)
 					//rotacija
 					/*rotate(90,40,NULL);
 					_delay_ms(500);*/
-					servo_position(250);
 					while(1);
 				}			
 			}//end for				
