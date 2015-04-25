@@ -136,8 +136,8 @@ void servo_init(unsigned int f_pwm)
 	OCR3C = 0;
 	
 	TCCR3A = (1 << COM3A1) | (1 << COM3A0) | (1 << COM3B1) | (1 << COM3B0) | (1 << COM3C1) | (1 << COM3C0) | (1 << WGM31);
-	TCCR3B = (1 << WGM32) | (1 << WGM33) | (1 << CS30); // PRESKALER = 1
-	ICR3 = F_CPU / f_pwm - 0.5; // FREKVENCIJA PWMA JE ~19kHz
+	TCCR3B = (1 << WGM32) | (1 << WGM33) | (1 << CS31); // PRESKALER = 8
+	ICR3 = (double)F_CPU / (8 * f_pwm) + 0.5;
 }
 
 //Zatvoren drzac za klapne je na 250

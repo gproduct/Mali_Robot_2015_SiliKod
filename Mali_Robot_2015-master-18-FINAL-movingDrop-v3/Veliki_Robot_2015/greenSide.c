@@ -9,14 +9,17 @@
 
 
 //NO TAC CODE HOCE PERA KILL
-
 char detectAfterGreen(unsigned long startTime)
 {
-	if(GPIO_PinRead(forwardLeftSensor) == 1 || GPIO_PinRead(forwardRightSensor) == 1)
+	while(GPIO_PinRead(forwardLeftSensor) == 1 || GPIO_PinRead(forwardRightSensor) == 1)
 	{
-		//URADI DA SAMO DA STANE DA CEKA
-		while(1);
+		stop(SOFT_STOP);
+		PORTG = 0xFF;
+		
+		return 1;
 	}
+	
+	PORTG = 0x00;
 	return 0;
 }
 
@@ -24,12 +27,9 @@ char driveByGreen(void)
 {
 	if(carpetsReleased == 0)
 	{
-		_delay_ms(3650);
-		servo_position(180);
-		_delay_ms(1000);
-		servo_position(0);//iskljucen
-		
-		carpetsReleased = 1;	
+		_delay_ms(3300);//3100
+		servo_position(205);//205
+		carpetsReleased = 1;
 	}
 }
 char detectEnemyGreen(unsigned long startTime)
@@ -86,7 +86,7 @@ char detectEnemyGreen(unsigned long startTime)
 *************************************************************************************************************************************************************************************/
 const moveOnDirectionFields greenSideTacticOnePositions[TACTIC_ONE_POSITION_COUNT] =
 {
-	{-218,80,detectEnemyGreen},//ide do pola stola							//1//provereno dobro (gostojic kaze ;) ) 
+	{-220,80,NULL},//ide do pola stola	//-83						//1//provereno dobro (gostojic kaze ;) ) 
 	{-750,50,driveByGreen}//popne se										//2	proveriti jer je 30 vise nego yellow side	//90
 };
 /*************************************************************************************************************************************************************************************
@@ -107,34 +107,51 @@ void greenSide(void)
 	{
 		switch(activeState)
 		{
+			case COLLISION:
+			if(currentPosition == 1)
+			while(1);
+			//if(currentPosition == 0)
+			//{
+			while(detectEnemyGreen(0) == 1)
+			{
+				PORTG = 0xFF;
+				_delay_ms(100);
+			}
+			PORTG = 0;
+			activeState = 5;
+			nextPosition = currentPosition;
+			//}
+			break;
 			case TACTIC_ONE:
 			for (currentPosition = nextPosition; currentPosition < TACTIC_ONE_POSITION_COUNT; currentPosition++)
 			{
 				// mozda ubaciti if-else sa akcijama tipa regularno- kretanje, i alternativno- sta god
+				
 				odometryStatus = moveOnDirection(greenSideTacticOnePositions[currentPosition].distance, greenSideTacticOnePositions[currentPosition].speed, greenSideTacticOnePositions[currentPosition].detectionCallback);
 				
 				if(odometryStatus == ODOMETRY_FAIL)
 				{
-
+					activeState = COLLISION;
+					nextPosition = currentPosition;
+					break;
 				}
 				else if(odometryStatus == ODOMETRY_STUCK)
 				{
 					
 				}
+				
 				if(currentPosition == 0)
 				{
-					_delay_ms(500);
-					rotate(-83,50,NULL);//rotira se za stepenice
-					_delay_ms(500);
+					_delay_ms(1000);
+					rotate(-83,50,NULL);//rotira se za stepenice 76
+					_delay_ms(1000);
 				}
 				else if(currentPosition == 1)
 				{
-					//rotacija
-					/*rotate(90,40,NULL);
-					_delay_ms(500);*/
+					//servo_position(250);
 					while(1);
-				}			
-			}//end for				
+				}
+			}//end for
 			break;
 		}
 	}//end while(1)

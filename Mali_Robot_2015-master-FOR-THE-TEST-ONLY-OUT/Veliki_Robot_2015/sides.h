@@ -11,7 +11,7 @@ typedef struct
 {
 	int distance;
 	unsigned char speed;
-	char (*detectionCallback)(void);
+	char (*detectionCallback)(unsigned long);
 }moveOnDirectionFields;
 
 void yellowSide(void);

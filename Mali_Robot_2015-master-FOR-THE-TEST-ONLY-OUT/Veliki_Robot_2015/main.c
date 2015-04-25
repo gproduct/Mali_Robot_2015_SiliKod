@@ -23,6 +23,9 @@ void Timer_Hook(void)
 		while(1);
 	}
 }
+
+//servo_position(205);   // gore
+//servo_position(217);   // dole
 /*
 _delay_ms(200);
 while(greenSideTacticOnePositions[currentPosition].detectionCallback(0) != 0)

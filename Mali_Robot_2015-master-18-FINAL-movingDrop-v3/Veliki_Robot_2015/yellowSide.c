@@ -12,19 +12,21 @@ char driveByYellow(void)
 	if(carpetsReleased == 0)
 	{
 		_delay_ms(3300);//3100
-		servo_position(180);
-		_delay_ms(1000);
-		servo_position(0);//iskljucen
+		servo_position(205);//205
 		carpetsReleased = 1;	
 	}
 }
 char detectAfterYellow(unsigned long startTime)
 {
-	if(GPIO_PinRead(forwardLeftSensor) == 1 || GPIO_PinRead(forwardRightSensor) == 1)
+	while(GPIO_PinRead(forwardLeftSensor) == 1 || GPIO_PinRead(forwardRightSensor) == 1)
 	{
-		//URADI DA SAMO DA STANE DA CEKA 
-		while(1);
+		stop(SOFT_STOP);
+		PORTG = 0xFF;
+		
+		return 1;
 	}
+	
+	PORTG = 0x00;
 	return 0;
 }
 char detectEnemyYellow(unsigned long startTime)
@@ -76,7 +78,7 @@ char detectEnemyYellow(unsigned long startTime)
 *************************************************************************************************************************************************************************************/
 const moveOnDirectionFields yellowSideTacticOnePositions[TACTIC_ONE_POSITION_COUNT] =
 {
-	{-215,80,detectEnemyYellow},//ide do pola stola							//1//provereno dobro (gostojic kaze ;) ) //original 208
+	{-215,80,NULL},//ide do pola stola							//1//provereno dobro (gostojic kaze ;) ) //original 208
 	{-735,40,driveByYellow}//popne se										//2	proveriti jer je 30 vise nego yellow side//original 705
 };
 /*************************************************************************************************************************************************************************************
@@ -97,6 +99,21 @@ void yellowSide(void)
 	{
 		switch(activeState)
 		{
+			case COLLISION:
+			if(currentPosition == 1)
+			while(1);
+			//if(currentPosition == 0)
+			//{
+			while(detectEnemyYellow(0) == 1)
+			{
+				PORTG = 0xFF;
+				_delay_ms(100);
+			}
+			PORTG = 0;
+			activeState = 5;
+			nextPosition = currentPosition;
+			//}
+			break;
 			case TACTIC_ONE:
 			for (currentPosition = nextPosition; currentPosition < TACTIC_ONE_POSITION_COUNT; currentPosition++)
 			{
@@ -106,7 +123,9 @@ void yellowSide(void)
 				
 				if(odometryStatus == ODOMETRY_FAIL)
 				{
-
+					activeState = COLLISION;
+					nextPosition = currentPosition;
+					break;
 				}
 				else if(odometryStatus == ODOMETRY_STUCK)
 				{
@@ -115,17 +134,13 @@ void yellowSide(void)
 				
 				if(currentPosition == 0)
 				{
-					
-					_delay_ms(500);
-					rotate(75,50,NULL);//rotira se za stepenice original:	76
-					_delay_ms(500);
+					_delay_ms(1000);
+					rotate(78,50,NULL);//rotira se za stepenice 76
+					_delay_ms(1000);
 				}
 				else if(currentPosition == 1)
 				{
-					//rotacija
-					/*rotate(90,40,NULL);
-					_delay_ms(500);*/
-					
+					//servo_position(250);
 					while(1);
 				}
 			}//end for

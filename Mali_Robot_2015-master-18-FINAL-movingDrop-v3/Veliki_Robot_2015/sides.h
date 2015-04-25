@@ -3,7 +3,8 @@
 typedef enum
 {
 	TACTIC_ONE = 1,
-	TACTIC_TWO
+	TACTIC_TWO,
+	COLLISION
 }robotStates;
 
 typedef struct

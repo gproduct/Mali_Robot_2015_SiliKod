@@ -30,9 +30,12 @@ char detectEnemyGreen(unsigned long startTime)
 	{
 		if(checkSensor == 0)
 		{
+			stop(SOFT_STOP);
 			//URADI DA KAD DETEKTUJE DA SAMO STOJI DOK NE DETEKTUJE NISTA
 			
 		}
+		
+		return 1;
 	}
 	return 0;
 }
@@ -66,6 +69,13 @@ void greenSide(void)
 	{
 		switch(activeState)
 		{
+			case COLLISION:
+				while(detectEnemyGreen(0) == 1)
+					_delay_ms(100);
+					
+				activeState = TACTIC_ONE;
+				nextPosition = currentPosition;
+				break;
 			case TACTIC_ONE:
 			for (currentPosition = nextPosition; currentPosition < TACTIC_ONE_POSITION_COUNT; currentPosition++)
 			{
@@ -74,7 +84,9 @@ void greenSide(void)
 				
 				if(odometryStatus == ODOMETRY_FAIL)
 				{
-
+					activeState = COLLISION;
+					nextPosition = currentPosition;
+					break;
 				}
 				else if(odometryStatus == ODOMETRY_STUCK)
 				{
@@ -82,11 +94,11 @@ void greenSide(void)
 				}
 				if(currentPosition == 0)
 				{
-					while(1);
+					
 				}
 				else if(currentPosition == 1)
 				{
-					
+					while(1);
 				}			
 			}//end for				
 			break;

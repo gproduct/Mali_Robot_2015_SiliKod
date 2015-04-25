@@ -33,12 +33,12 @@ unsigned char GPIO_PinRegister(volatile unsigned char *baseAddress, unsigned cha
 	gpios[inputsNumber]->baseAddress = baseAddress;
 	gpios[inputsNumber]->pinPosition = pin;
 	for(i = 0; i < 3; i++)
-		gpios[inputsNumber]->buffer[i] = 0;
+		gpios[inputsNumber]->buffer[i] = 0;////0 << 50111110000000
 
-	//_MMIO_BYTE(baseAddress - 1) &= ~(1 << pin);
-	_MMIO_BYTE(baseAddress - 1) &= (0 << pin);
-	//_MMIO_BYTE(baseAddress) |= (1 << pin);
-	_MMIO_BYTE(baseAddress) &= (0 << pin);
+	_MMIO_BYTE(baseAddress - 1) &= ~(1 << pin);
+	//_MMIO_BYTE(baseAddress - 1) &= (0 << pin);
+	_MMIO_BYTE(baseAddress) |= (1 << pin);
+	//_MMIO_BYTE(baseAddress) &= (0 << pin);
 
 	i = inputsNumber;
 	inputsNumber++;
@@ -97,7 +97,7 @@ void systemInit(void)
 	servo_init(100);
 	DDRG = 0xFF;
 	CAN_Init(4);
-	
+	servo_position(217);   // dole
 	forwardLeftSensor = GPIO_PinRegister(GPIOA_BASE, 2); // PREDNJI LEVI SENZOR ZA STEPENICE
 	forwardRightSensor = GPIO_PinRegister(GPIOA_BASE, 0); // PREDNJI DESNI SENZOR //promenjen za 0
 	backwardLeftSensor = GPIO_PinRegister(GPIOA_BASE, 3); // ZADNJI LEVI SENZOR	
@@ -136,8 +136,8 @@ void servo_init(unsigned int f_pwm)
 	OCR3C = 0;
 	
 	TCCR3A = (1 << COM3A1) | (1 << COM3A0) | (1 << COM3B1) | (1 << COM3B0) | (1 << COM3C1) | (1 << COM3C0) | (1 << WGM31);
-	TCCR3B = (1 << WGM32) | (1 << WGM33) | (1 << CS30); // PRESKALER = 1
-	ICR3 = F_CPU / f_pwm - 0.5; // FREKVENCIJA PWMA JE ~19kHz
+	TCCR3B = (1 << WGM32) | (1 << WGM33) | (1 << CS31); // PRESKALER = 8
+	ICR3 = (double)F_CPU / (8 * f_pwm) + 0.5; 
 }
 
 //Zatvoren drzac za klapne je na 250
