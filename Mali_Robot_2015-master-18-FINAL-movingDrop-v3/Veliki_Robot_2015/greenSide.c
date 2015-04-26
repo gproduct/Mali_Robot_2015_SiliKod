@@ -86,7 +86,7 @@ char detectEnemyGreen(unsigned long startTime)
 *************************************************************************************************************************************************************************************/
 const moveOnDirectionFields greenSideTacticOnePositions[TACTIC_ONE_POSITION_COUNT] =
 {
-	{-220,80,NULL},//ide do pola stola	//-83						//1//provereno dobro (gostojic kaze ;) ) 
+	{-220,80,NULL},//ide do pola stola	//-83								//1 provereno dobro (gostojic kaze ;) ) 
 	{-750,50,driveByGreen}//popne se										//2	proveriti jer je 30 vise nego yellow side	//90
 };
 /*************************************************************************************************************************************************************************************
@@ -142,9 +142,9 @@ void greenSide(void)
 				
 				if(currentPosition == 0)
 				{
-					_delay_ms(1000);
+					_delay_ms(500);
 					rotate(-83,50,NULL);//rotira se za stepenice 76
-					_delay_ms(1000);
+					_delay_ms(500);
 				}
 				else if(currentPosition == 1)
 				{

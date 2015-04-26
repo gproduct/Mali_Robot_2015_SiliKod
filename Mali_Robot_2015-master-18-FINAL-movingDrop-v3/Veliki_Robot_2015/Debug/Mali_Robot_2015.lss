@@ -2227,8 +2227,8 @@ Disassembly of section .text:
     1194:	eb c0       	rjmp	.+470    	; 0x136c <__stack+0x26d>
     1196:	80 e0       	ldi	r24, 0x00	; 0
     1198:	90 e0       	ldi	r25, 0x00	; 0
-    119a:	aa e7       	ldi	r26, 0x7A	; 122
-    119c:	b4 e4       	ldi	r27, 0x44	; 68
+    119a:	aa ef       	ldi	r26, 0xFA	; 250
+    119c:	b3 e4       	ldi	r27, 0x43	; 67
     119e:	89 8f       	std	Y+25, r24	; 0x19
     11a0:	9a 8f       	std	Y+26, r25	; 0x1a
     11a2:	ab 8f       	std	Y+27, r26	; 0x1b
@@ -2341,8 +2341,8 @@ Disassembly of section .text:
     1284:	7e d6       	rcall	.+3324   	; 0x1f82 <rotate>
     1286:	80 e0       	ldi	r24, 0x00	; 0
     1288:	90 e0       	ldi	r25, 0x00	; 0
-    128a:	aa e7       	ldi	r26, 0x7A	; 122
-    128c:	b4 e4       	ldi	r27, 0x44	; 68
+    128a:	aa ef       	ldi	r26, 0xFA	; 250
+    128c:	b3 e4       	ldi	r27, 0x43	; 67
     128e:	8b 87       	std	Y+11, r24	; 0x0b
     1290:	9c 87       	std	Y+12, r25	; 0x0c
     1292:	ad 87       	std	Y+13, r26	; 0x0d
@@ -7015,8 +7015,8 @@ Disassembly of section .text:
     3876:	e0 c0       	rjmp	.+448    	; 0x3a38 <yellowSide+0x3a4>
     3878:	80 e0       	ldi	r24, 0x00	; 0
     387a:	90 e0       	ldi	r25, 0x00	; 0
-    387c:	aa e7       	ldi	r26, 0x7A	; 122
-    387e:	b4 e4       	ldi	r27, 0x44	; 68
+    387c:	aa ef       	ldi	r26, 0xFA	; 250
+    387e:	b3 e4       	ldi	r27, 0x43	; 67
     3880:	89 8f       	std	Y+25, r24	; 0x19
     3882:	9a 8f       	std	Y+26, r25	; 0x1a
     3884:	ab 8f       	std	Y+27, r26	; 0x1b
@@ -7129,8 +7129,8 @@ Disassembly of section .text:
     395a:	0e 94 c1 0f 	call	0x1f82	; 0x1f82 <rotate>
     395e:	80 e0       	ldi	r24, 0x00	; 0
     3960:	90 e0       	ldi	r25, 0x00	; 0
-    3962:	aa e7       	ldi	r26, 0x7A	; 122
-    3964:	b4 e4       	ldi	r27, 0x44	; 68
+    3962:	aa ef       	ldi	r26, 0xFA	; 250
+    3964:	b3 e4       	ldi	r27, 0x43	; 67
     3966:	8b 87       	std	Y+11, r24	; 0x0b
     3968:	9c 87       	std	Y+12, r25	; 0x0c
     396a:	ad 87       	std	Y+13, r26	; 0x0d

@@ -134,9 +134,9 @@ void yellowSide(void)
 				
 				if(currentPosition == 0)
 				{
-					_delay_ms(1000);
+					_delay_ms(500);
 					rotate(78,50,NULL);//rotira se za stepenice 76
-					_delay_ms(1000);
+					_delay_ms(500);
 				}
 				else if(currentPosition == 1)
 				{
