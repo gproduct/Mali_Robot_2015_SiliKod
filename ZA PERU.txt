@@ -1,0 +1,12 @@
+Pozvao mene srki i rekao:
+Da uradimo da se on najsporije da samo da izadje i da ima detekciju 
+(ja neznam kako da uradim ali treba da ako detektuje da samo ceka dok ne detektuje (kao na veliko))
+to trebas ti da uradis.
+
+I jos da uradimo da se samo popne.
+Imas tu 3 filea
+FINAL je dobar kod
+ona dva su za onaj test.
+Ti pogledaj njih.
+
+Vidimo se.
